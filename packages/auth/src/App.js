@@ -23,7 +23,7 @@ export default ({ history, onSignIn }) => {
             <Signup onSignIn={onSignIn} />
           </Route>
         </Switch>
-      </Router>
+      </Router> 
     </StylesProvider>
   );
 };
