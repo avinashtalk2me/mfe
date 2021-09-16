@@ -1,9 +1,9 @@
-import React, { useRef, useEffect } from "react";
-import { mount } from "marketing/MarketingApp";
+import React, { useEffect, useRef } from "react";
+import { mount } from "auth/AuthApp";
 import { useHistory } from "react-router-dom";
 
-export default () => {
-  const ref = useRef(null);
+export default ({ onSignUp }) => {
+  const ref = useRef();
   const history = useHistory();
 
   useEffect(() => {
@@ -11,14 +11,16 @@ export default () => {
       initialPath: history.location.pathname,
       onNavigate: ({ pathname: nextPathname }) => {
         const { pathname } = history.location;
+
         if (pathname !== nextPathname) {
           history.push(nextPathname);
         }
-        // console.log(history);
       },
+      onSignUp,
     });
-    history.listen(onParentNavigate);
+
+    history.push(onParentNavigate);
   }, []);
 
-  return <div ref={ref} />;
+  return <div ref={ref}></div>;
 };
